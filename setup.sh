@@ -88,18 +88,31 @@ gcloud secrets add-iam-policy-binding django_settings \
   --role roles/secretmanager.secretAccessor
 
 
-# export SUPERUSER="admin"
-# export SUPERPASS=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 30 | head -n 1)
+export SUPERUSER="admin"
+export SUPERPASS=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 30 | head -n 1)
+gcloud secrets create SUPERUSER --replication-policy automatic
+gcloud secrets add-iam-policy-binding SUPERUSER \
+    --member serviceAccount:$CLOUDBUILD_SA \
+    --role roles/secretmanager.secretAccessor
 
-# for SECRET in SUPERUSER SUPERPASS; do
-#   gcloud secrets create $SECRET --replication-policy automatic
+gcloud secrets create SUPERPASS --replication-policy automatic
+gcloud secrets add-iam-policy-binding SUPERPASS \
+    --member serviceAccount:$CLOUDBUILD_SA \
+    --role roles/secretmanager.secretAccessor
+
+for SECRET in SUPERUSER SUPERPASS; do
+  echo -n "${SECRET}"
+done
+
+for SECRET in SUPERUSER SUPERPASS; do
+  gcloud secrets create $SECRET --replication-policy automatic
     
-#   echo -n "${!SECRET}" | gcloud secrets versions add $SECRET --data-file=-
+  echo -n "${!SECRET}" | gcloud secrets versions add $SECRET --data-file=-
     
-#   gcloud secrets add-iam-policy-binding $SECRET \
-#     --member serviceAccount:$CLOUDBUILD_SA \
-#     --role roles/secretmanager.secretAccessor
-# done
+  gcloud secrets add-iam-policy-binding $SECRET \
+    --member serviceAccount:$CLOUDBUILD_SA \
+    --role roles/secretmanager.secretAccessor
+done
 
 gcloud secrets versions access latest --secret $SECRET
 
@@ -111,14 +124,15 @@ gcloud run deploy $SERVICE_NAME \
   --add-cloudsql-instances $PROJECT_ID:$REGION:$INSTANCE_NAME \
   --service-account $CLOUDRUN_SA
 
-export SERVICE_URL=$(gcloud run services describe $SERVICE_NAME \
-  --format "value(status.url)")
-	 
+gcloud run services list
+
+export SERVICE_URL=$(gcloud run services describe $SERVICE_NAME --format "value(status.url)")
+
 echo $SERVICE_URL
 
 
-gcloud run services update $SERVICE_NAME \
-  --update-env-vars "CURRENT_HOST=${SERVICE_URL}"
+
+gcloud run services update $SERVICE_NAME --update-env-vars "CURRENT_HOST=${SERVICE_URL}"
 
 
 for role in cloudsql.client run.admin; do
