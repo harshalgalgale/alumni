@@ -1,5 +1,5 @@
 # Project Setting
-export PROJECT_ID=alumni-dev-13042021
+export PROJECT_ID=learn-terraform-311311
 
 # Project Region
 export REGION=europe-west2
