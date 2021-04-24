@@ -1,7 +1,7 @@
 # Create your models here.
 from __future__ import unicode_literals
 
-from country_regions.models import Region, Country
+# from country_regions.models import Region, Country
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -51,8 +51,20 @@ class SubSector(models.Model):
 
 
 class AbstractAddress(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, help_text="Country")
-    state = models.ForeignKey(Region, on_delete=models.CASCADE, blank=True, help_text="Region/State")
+    # country = models.ForeignKey(Country, on_delete=models.CASCADE, help_text="Country")
+    # state = models.ForeignKey(Region, on_delete=models.CASCADE, blank=True, help_text="Region/State")
+    country = models.CharField(
+        max_length=150,
+        blank=True,
+        default='',
+        help_text="County"
+    )
+    state = models.CharField(
+        max_length=150,
+        blank=True,
+        default='',
+        help_text="Region/State"
+    )
     district = models.CharField(
         max_length=150,
         blank=True,
