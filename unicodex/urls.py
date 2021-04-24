@@ -61,7 +61,7 @@ urlpatterns = [
 # API URLS
 urlpatterns += [
     # API base url
-    path("api/", include('alumni.api_router')),
+    path("api/", include('unicodex.api_router')),
 ]
 
 if settings.DEBUG:
