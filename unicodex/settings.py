@@ -74,7 +74,6 @@ if "localhost" not in ALLOWED_HOSTS:
 
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -82,12 +81,29 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Third Party Apps
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
+    'import_export',
+    'drf_yasg',
+    'country_regions',
+
+    # Application definition
     "unicodex",
+    'students',
+    'core',
+    'committee',
+    'members',
+    'article',
+    'career',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -147,3 +163,82 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        # 'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:4200"
+]
+
+WEB_ENV = env("WEB_ENV", default='prod')
+
+if WEB_ENV == 'local':
+    EMAIL_BACKEND = env('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+SENDGRID_API_KEY = env('SENDGRID_API_KEY', default='')
+
+EMAIL_HOST =  env('SENDGRID_API_KEY', default='smtp.sendgrid.net')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER = 'noreply@alumni.com'
+DEFAULT_REPLY_TO_EMAIL = 'hello@alumni.com'
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': True,  # add Django Login and Django Logout buttons, CSRF token to swagger UI page
+    # 'LOGIN_URL': getattr(django.conf.settings, 'LOGIN_URL', None),  # URL for the login button
+    # 'LOGOUT_URL': getattr(django.conf.settings, 'LOGOUT_URL', None),  # URL for the logout button
+
+    # Swagger security definitions to include in the schema;
+    # see https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#security-definitions-object
+    'SECURITY_DEFINITIONS': {
+        # 'basic': {
+        #     'type': 'basic'
+        # },
+        'JWTAuthentication': {
+            'description': 'Uses Bearer Authentication (also called token authentication). You must include an Authorization header when making requests to the API',
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        },
+    },
+
+    # url to an external Swagger validation service; defaults to 'http://online.swagger.io/validator/'
+    # set to None to disable the schema validation badge in the UI
+    'VALIDATOR_URL': '',
+
+    # swagger-ui configuration settings, see https://github.com/swagger-api/swagger-ui/blob/112bca906553a937ac67adc2e500bdeed96d067b/docs/usage/configuration.md#parameters
+    'OPERATIONS_SORTER': None,
+    'TAGS_SORTER': None,
+    'DOC_EXPANSION': 'list',
+    'DEEP_LINKING': False,
+    'SHOW_EXTENSIONS': True,
+    'DEFAULT_MODEL_RENDERING': 'model',
+    'DEFAULT_MODEL_DEPTH': 2,
+}
+
+REDOC_SETTINGS = {
+    # ReDoc UI configuration settings, see https://github.com/Rebilly/ReDoc#redoc-tag-attributes
+    'LAZY_RENDERING': True,
+    'HIDE_HOSTNAME': False,
+    'EXPAND_RESPONSES': 'all',
+    'PATH_IN_MIDDLE': False,
+}
