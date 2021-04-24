@@ -149,7 +149,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "unicodex.wsgi.application"
 
-DATABASES = {"default": env.db()}
+WEB_ENV =  env("WEB_ENV", default='prod')
+if WEB_ENV != 'local':
+    DATABASES = {"default": env.db()}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR,  "db.sqlite3"),
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -188,13 +197,13 @@ CORS_ORIGIN_WHITELIST = [
 WEB_ENV = env("WEB_ENV", default='prod')
 
 if WEB_ENV == 'local':
-    EMAIL_BACKEND = env('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
+    EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SENDGRID_API_KEY = env('SENDGRID_API_KEY', default='')
 
-EMAIL_HOST =  env('SENDGRID_API_KEY', default='smtp.sendgrid.net')
+EMAIL_HOST = env('SENDGRID_API_KEY', default='smtp.sendgrid.net')
 EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 EMAIL_PORT = 587
