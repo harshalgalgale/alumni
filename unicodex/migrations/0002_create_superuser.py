@@ -5,19 +5,22 @@ from django.db import migrations
 import google.auth
 from google.cloud import secretmanager_v1 as sm
 
+from unicodex.settings import WEB_ENV
+
 
 def access_secrets(secret_keys):
     secrets = {}
-    _, project = google.auth.default()
-
-    if project:
-        client = sm.SecretManagerServiceClient()
-
-        for s in secret_keys:
-            name = f"projects/{project}/secrets/{s}/versions/latest"
-            payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
-            secrets[s] = payload
-
+    if WEB_ENV != 'local':
+        _, project = google.auth.default()
+        if project:
+            client = sm.SecretManagerServiceClient()
+            for s in secret_keys:
+                name = f"projects/{project}/secrets/{s}/versions/latest"
+                payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
+                secrets[s] = payload
+    else:
+        secrets["SUPERUSER"] = 'su'
+        secrets["SUPERPASS"] = 'admin'
     return secrets
 
 
