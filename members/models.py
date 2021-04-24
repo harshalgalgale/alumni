@@ -1,10 +1,13 @@
 from django.db import models
 
 # Create your models here.
-from accounts.models import User
+# from accounts.models import User
 from core.models import AbstractAddress, SubSector, Skills
 from students.models import Student, GENDER
+from django.contrib.auth import get_user_model
 
+
+User = get_user_model()
 
 class PersonalProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

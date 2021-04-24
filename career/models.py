@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from core.models import AbstractAddress
 from students.models import DEGREE
 
+
 User = get_user_model()
 # Create your models here.
 
