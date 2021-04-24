@@ -1,9 +1,22 @@
-Django==3.1.8
+django
 gunicorn
 django-environ
 psycopg2-binary
 django-storages[google]
 google-cloud-secret-manager==2.0.0
+
+django-cors-headers
+django-countries
+django-import-export
+django-rest-framework
+djangorestframework-simplejwt
+djangorestframework-csv
+
+six
+drf-yasg
+pillow
+factory-boy
+django-country-regions
 
 
 # required for internal functionality, not deployement related
