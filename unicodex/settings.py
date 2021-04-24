@@ -88,7 +88,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'import_export',
     'drf_yasg',
-    'country_regions',
+    # 'country_regions',
 
     # Application definition
     "unicodex",
