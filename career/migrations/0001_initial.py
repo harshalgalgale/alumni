@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             name='CompanyAddress',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('country', models.CharField(blank=True, default='', help_text='County', max_length=150)),
+                ('country', models.CharField(blank=True, default='', help_text='Country', max_length=150)),
                 ('state', models.CharField(blank=True, default='', help_text='Region/State', max_length=150)),
                 ('district', models.CharField(blank=True, default='', help_text='District', max_length=150)),
                 ('town_city', models.CharField(blank=True, default='', help_text='Village/Taluka/Town/City.', max_length=150)),

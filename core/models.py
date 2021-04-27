@@ -57,7 +57,7 @@ class AbstractAddress(models.Model):
         max_length=150,
         blank=True,
         default='',
-        help_text="County"
+        help_text="Country"
     )
     state = models.CharField(
         max_length=150,
