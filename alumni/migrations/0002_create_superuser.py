@@ -1,5 +1,6 @@
 import os
 
+from django.contrib.auth import get_user_model
 from django.db import migrations
 
 import google.auth
@@ -35,7 +36,7 @@ def createsuperuser(apps, schema_editor):
         password = os.environ["SUPERPASS"]
 
     # Create a new user using acquired password
-    from django.contrib.auth.models import User
+    User = get_user_model()
 
     User.objects.create_superuser(username, password=password)
 

@@ -88,13 +88,13 @@ echo SECRET_KEY=\"$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 50 
 
 
 # CREATE SECRETS
-gcloud secrets create django_settings --replication-policy automatic --data-file .env
+gcloud secrets create django_alumni_settings --replication-policy automatic --data-file .env
 
 # ALLOW ACCESS TO SECRETS FOR CLOUDRUN AND CLOUDBUID SERVICE ACCOUNT
-gcloud secrets add-iam-policy-binding django_settings \
+gcloud secrets add-iam-policy-binding django_alumni_settings \
   --member serviceAccount:$CLOUDRUN_SA \
   --role roles/secretmanager.secretAccessor
-gcloud secrets add-iam-policy-binding django_settings \
+gcloud secrets add-iam-policy-binding django_alumni_settings \
   --member serviceAccount:$CLOUDBUILD_SA \
   --role roles/secretmanager.secretAccessor
 
