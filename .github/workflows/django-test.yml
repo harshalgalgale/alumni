@@ -12,7 +12,7 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
-          POSTGRES_DB: unicodex
+          POSTGRES_DB: alumni
         ports:
         - 5432:5432
         options: --mount type=tmpfs,destination=/var/lib/postgresql/data --health-cmd
@@ -29,7 +29,7 @@ jobs:
     - name: Create local settings
       run: |
         # Ensure database port is dynamic
-        echo "DATABASE_URL='postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/unicodex'" > .env
+        echo "DATABASE_URL='postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/alumni'" > .env
         # Enter some useful defaults for other environment variables
         echo -en "SECRET_KEY=asdfasdfasdf\nSUPERUSER=admin\nSUPERPASS=admin\nDBEUG=True" >> .env
     - name: Install dependencies

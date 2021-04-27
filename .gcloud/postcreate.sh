@@ -21,7 +21,7 @@ echo "Post-create configuration complete ✨"
 
 echo ""
 echo ""
-echo "Unicodex is now deployed to ${SERVICE_URL}"
+echo "Alumni is now deployed to ${SERVICE_URL}"
 echo ""
 echo "To login into the Django admin: "
 echo "  * go to ${SERVICE_URL}/admin"

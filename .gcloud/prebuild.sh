@@ -75,10 +75,10 @@ export DATABASE_INSTANCE=$PROJECT_ID:$REGION:$INSTANCE_NAME
 stepdone
 
 stepdo "Create SQL Database and User"
-export DATABASE_NAME=unicodex
+export DATABASE_NAME=alumni
 gcloud sql databases create $DATABASE_NAME \
   --instance=$INSTANCE_NAME
-export DBUSERNAME=unicodex-django
+export DBUSERNAME=alumni-django
 export DBPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 40 | head -n 1)
 gcloud sql users create $DBUSERNAME \
   --password $DBPASSWORD \

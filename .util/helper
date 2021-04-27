@@ -21,7 +21,7 @@ def cli():
 @click.option('--instance', default="psql", help='Replacement SQL Instance name')
 @click.option('--region', default="us-central1", help='Replacement Google Cloud region')
 def gen(path, project, instance, region):
-    """Generate a script to deploy unicodex"""
+    """Generate a script to deploy alumni"""
     try:
         repo = git.Repo(search_parent_directories=True)
         sha = repo.head.object.hexsha
@@ -62,11 +62,11 @@ def check_env(path):
 
 @click.command()
 @click.argument('project', envvar="PROJECT_ID")
-@click.option('--service', default="unicodex", help="The service name")
+@click.option('--service', default="alumni", help="The service name")
 @click.option('--region', default="us-central1", help="The region the service is deployed in")
 @click.option('--secret', default="django_settings", help="The name of the secret containing the django env")
 def check_deploy(project, service, region, secret):
-    """Check a unicodex deployment"""
+    """Check a alumni deployment"""
     deployment_checks.check_deploy(project, service, region, secret)
 
 cli.add_command(gen)

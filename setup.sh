@@ -5,19 +5,19 @@ export PROJECT_ID=learn-terraform-311311
 export REGION=europe-west2
 
 # Project Service
-export SERVICE_NAME=unicodex
+export SERVICE_NAME=alumni
 
 # Service Accounts
 export CLOUDRUN_SA=${SERVICE_NAME}@${PROJECT_ID}.iam.gserviceaccount.com
 
 # Database Settings
-export INSTANCE_NAME=unicodex-sql
+export INSTANCE_NAME=alumni-sql
 export ROOT_PASSWORD=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 64 | head -n 1)
 export DATABASE_INSTANCE=$PROJECT_ID:$REGION:$INSTANCE_NAME
 
-export DBUSERNAME=unicodex-django
+export DBUSERNAME=alumni-django
 export DBPASSWORD=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 40 | head -n 1)
-export DATABASE_NAME=unicodex
+export DATABASE_NAME=alumni
 export DATABASE_URL=postgres://$DBUSERNAME:${DBPASSWORD}@//cloudsql/$PROJECT_ID:$REGION:$INSTANCE_NAME/$DATABASE_NAME
 
 # Storage Settings

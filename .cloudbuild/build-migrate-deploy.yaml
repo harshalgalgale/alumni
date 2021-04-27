@@ -43,7 +43,7 @@ images:
 # Defaults:
 
 substitutions:
-   _SERVICE: unicodex
+   _SERVICE: alumni
    _REGION: us-central1
  
 # User provided:
