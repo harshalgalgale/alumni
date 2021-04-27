@@ -15,7 +15,7 @@
 # limitations under the License.
 
 """
-WSGI config for unicodex project.
+WSGI config for Alumni project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -27,6 +27,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "unicodex.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "alumni.settings")
 
 application = get_wsgi_application()

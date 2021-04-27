@@ -28,7 +28,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.utils.text import slugify
 
 from bs4 import BeautifulSoup
-from unicodex.models import Codepoint, Design, VendorVersion
+from alumni.models import Codepoint, Design, VendorVersion
 
 
 # Force a flused output to get real-time output in StackDriver

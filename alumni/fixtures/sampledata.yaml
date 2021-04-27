@@ -12,85 +12,85 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Sample data to pre-populate unicodex with
+# Sample data to pre-populate alumni with
 # Run with: ./manage.py loaddata sampledata
 # 
 # Sample data can be exported with
-# ./manage.py dumpdata unicodex --format yaml
+# ./manage.py dumpdata alumni --format yaml
 
 
 # Vendors
 
-- model: unicodex.vendor
+- model: alumni.vendor
   pk: 1
   fields:
     name: Twitter
-- model: unicodex.vendor
+- model: alumni.vendor
   pk: 4
   fields:
     name: Google
-- model: unicodex.vendor
+- model: alumni.vendor
   pk: 5
   fields:
     name: JoyPixels
-- model: unicodex.vendor
+- model: alumni.vendor
   pk: 6
   fields:
     name: OpenMoji
 
 # Vendor Versions
 
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 1
   fields:
     name: Twemoji 1.0
     vendor: 1
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 7
   fields:
     name: Android 10.0
     vendor: 4
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 8
   fields:
     name: Android 7.0
     vendor: 4
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 9
   fields:
     name: Android 4.3
     vendor: 4
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 10
   fields:
     name: Android 4.4
     vendor: 4
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 11
   fields:
     name: Twemoji 2.0
     vendor: 1
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 12
   fields:
     name: Twemoji 2.5
     vendor: 1
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 13
   fields:
     name: '2.0'
     vendor: 5
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 14
   fields:
     name: '2.1'
     vendor: 5
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 15
   fields:
     name: '3.0'
     vendor: 5
-- model: unicodex.vendorversion
+- model: alumni.vendorversion
   pk: 16
   fields:
     name: '12.0'
@@ -98,7 +98,7 @@
 
 # Codepoints
 
-- model: unicodex.codepoint
+- model: alumni.codepoint
   pk: 1
   fields:
     name: Waving

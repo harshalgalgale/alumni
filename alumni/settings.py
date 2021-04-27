@@ -91,7 +91,7 @@ INSTALLED_APPS = [
     # 'country_regions',
 
     # Application definition
-    "unicodex",
+    "alumni",
     'accounts',
     'students',
     'core',
@@ -130,7 +130,7 @@ else:
     MEDIA_URL = "/media/"  # what is prepended to the image URL
 
 
-ROOT_URLCONF = "unicodex.urls"
+ROOT_URLCONF = "alumni.urls"
 
 TEMPLATES = [
     {
@@ -148,7 +148,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "unicodex.wsgi.application"
+WSGI_APPLICATION = "alumni.wsgi.application"
 
 WEB_ENV =  env("WEB_ENV", default='prod')
 if WEB_ENV != 'local':

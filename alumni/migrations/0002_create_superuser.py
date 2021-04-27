@@ -5,7 +5,7 @@ from django.db import migrations
 import google.auth
 from google.cloud import secretmanager_v1 as sm
 
-from unicodex.settings import WEB_ENV
+from alumni.settings import WEB_ENV
 
 
 def access_secrets(secret_keys):
@@ -43,7 +43,7 @@ def createsuperuser(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("unicodex", "0001_initial"),
+        ("alumni", "0001_initial"),
     ]
 
     operations = [migrations.RunPython(createsuperuser)]

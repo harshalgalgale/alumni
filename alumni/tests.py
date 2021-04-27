@@ -22,7 +22,7 @@ from django.core.management import call_command
 from django.test import Client, TestCase, TransactionTestCase, tag
 from django.urls import reverse
 
-from unicodex.models import *
+from alumni.models import *
 
 client = Client()
 

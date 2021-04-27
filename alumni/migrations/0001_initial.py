@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import unicodex.models
+import alumni.models
 
 
 class Migration(migrations.Migration):
@@ -35,16 +35,16 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
-                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='unicodex.Vendor')),
+                ('vendor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='alumni.Vendor')),
             ],
         ),
         migrations.CreateModel(
             name='Design',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.FileField(upload_to=unicodex.models.Design.design_path)),
-                ('codepoint', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='unicodex.Codepoint')),
-                ('vendorversion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='unicodex.VendorVersion')),
+                ('image', models.FileField(upload_to=alumni.models.Design.design_path)),
+                ('codepoint', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='alumni.Codepoint')),
+                ('vendorversion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='alumni.VendorVersion')),
             ],
             options={
                 'unique_together': {('vendorversion', 'codepoint')},

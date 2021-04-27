@@ -17,7 +17,7 @@
 from django.core.files.base import File
 from django.core.management.base import BaseCommand, CommandError
 
-from unicodex.models import Codepoint, Design, VendorVersion
+from alumni.models import Codepoint, Design, VendorVersion
 
 # Magic import_emoji command
 

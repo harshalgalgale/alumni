@@ -16,7 +16,7 @@
 
 from django.shortcuts import render
 
-from unicodex.models import Codepoint, Design, Vendor, VendorVersion
+from alumni.models import Codepoint, Design, Vendor, VendorVersion
 
 
 def index(request):
